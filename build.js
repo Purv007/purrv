@@ -44,7 +44,7 @@ const JS_FILES = [
   'config.js', 'atmosphere.js', 'interactions.js', 'selection.js', 'modal.js',
   'certificates.js', 'experience.js', 'projects-data.js', 'projects.js',
   'terminal.js', 'achievements.js', 'education.js', 'contact.js', 'end.js',
-  'nav.js', 'hero.js',
+  'nav.js', 'skills.js', 'hero.js',
 ];
 
 function rmrf(p) {
