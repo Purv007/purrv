@@ -1,0 +1,16 @@
+{
+  "name": "purv-portfolio",
+  "version": "1.0.0",
+  "description": "Purv Patel's personal developer portfolio — single-page site, plain HTML/CSS/JS.",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [],
+  "author": "Purv Patel",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "esbuild": "^0.28.2"
+  }
+}
+
