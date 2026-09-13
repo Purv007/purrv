@@ -44,7 +44,13 @@ function renderFeaturedCards() {
         <div class="project-card__chips">
           ${project.techStack.map(t => `<span class="project-card__chip">${pmEscapeHtml(t)}</span>`).join('')}
         </div>
-        <span class="project-card__link">View Details ${icons.arrow}</span>
+        <div class="project-card__footer">
+          <span class="project-card__link">View Details ${icons.arrow}</span>
+          <div class="project-card__actions">
+            ${project.repo ? `<a href="${project.repo}" target="_blank" rel="noopener" data-stop-row-click class="project-card__action-btn" title="GitHub Repository">${icons.repo}</a>` : `<span class="project-card__action-btn project-card__action-btn--disabled" title="No Repository Available">${icons.repo}</span>`}
+            ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener" data-stop-row-click class="project-card__action-btn" title="Live Demo">${icons.demo}</a>` : `<span class="project-card__action-btn project-card__action-btn--disabled" title="No Live Demo">${icons.demo}</span>`}
+          </div>
+        </div>
       </div>
     </article>
   `).join('');
@@ -93,12 +99,21 @@ function fillProjectModal(project) {
   document.getElementById('pmSubtitle').textContent = project.subtitle;
   document.getElementById('pmDesc').textContent = project.overview;
 
-  const actions = document.getElementById('pmActions');
+  const topRepoBtn = document.getElementById('pmTopRepoBtn');
+  if (project.repo) {
+    topRepoBtn.href = project.repo;
+    topRepoBtn.style.display = 'flex';
+  } else {
+    topRepoBtn.style.display = 'none';
+  }
+
+  const actionContainers = document.querySelectorAll('.pmActionsContainer');
   let actionsHtml = '';
-  if (project.repo) actionsHtml += `<a href="${project.repo}" target="_blank" rel="noopener" class="btn btn-outline">${icons.repo}Repository</a>`;
   if (project.demo) actionsHtml += `<a href="${project.demo}" target="_blank" rel="noopener" class="btn btn-primary">${icons.demo}Live Demo</a>`;
-  actions.innerHTML = actionsHtml;
-  actions.style.display = actionsHtml ? 'flex' : 'none';
+  actionContainers.forEach(container => {
+    container.innerHTML = actionsHtml;
+    container.style.display = actionsHtml ? 'flex' : 'none';
+  });
 
   document.getElementById('pmProblem').textContent = project.problem;
   document.getElementById('pmSolution').textContent = project.solution;
